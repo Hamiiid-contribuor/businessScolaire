@@ -6,6 +6,19 @@ list_of_user:
     path:     /user/list
     defaults: { _controller: UserBundle:User:listUser }
     
+delete_user:
+    path:     /user/delete/{id}
+    defaults: { _controller: UserBundle:User:deleteUser , id: 1 }
+
+activate_user:
+    path:     /user/activate/{id}
+    defaults: { _controller: UserBundle:User:activateUser , id: 1 }
+    
+disactivate_user:
+    path:     /user/disactivate/{id}
+    defaults: { _controller: UserBundle:User:disactivateUser , id: 1 }
+
+    
 # app/config/routing.yml
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

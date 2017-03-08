@@ -32,4 +32,33 @@ class UserController extends Controller {
         ));
     }
 
+    public function activateUserAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->find($id);
+        $user->setEnabled(true);
+        $em->flush($user);
+
+        return $this->redirectToRoute('list_of_user');
+    }
+
+    public function disactivateUserAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->find($id);
+        $user->setEnabled(false);
+        $em->flush($user);
+
+        return $this->redirectToRoute('list_of_user');
+    }
+
+    public function deleteUserAction(User $user) {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush($user);
+
+        return $this->redirectToRoute('list_of_user');
+    }
+
 }

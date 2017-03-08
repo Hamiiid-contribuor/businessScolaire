@@ -1,10 +1,71 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
+{#
 {% block fos_user_content %}
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
     {% if targetUrl %}
     <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
 {% endblock fos_user_content %}
+
+#}
+
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block stylesheets %}
+
+    <style>
+        body{
+            background-image: url("{{ asset("assets/img/boxed-bg2.png") }}")!important;
+        }
+
+    </style>
+{% endblock stylesheets %}
+
+{% block body %}
+
+    {% trans_default_domain 'FOSUserBundle' %}
+    {% block fos_user_content %}
+        <div class="login-wrapper ">
+            <!-- START Login Background Pic Wrapper-->
+            <div class="bg-pic">
+                <!-- START Background Pic-->
+                <img src="{{asset('assetsE/img/demo/school.jpg')}}" data-src="{{asset('assetsE/img/demo/school.jpg')}}" data-src-retina="{{asset('assets/img/demo/school.jpg')}}" alt="" class="lazy">
+                <!-- END Background Pic-->
+                <!-- START Background Caption-->
+                <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+                    <div class="col-lg-2">
+                        <img src="" style="height: 200px; width: 200px;margin-left: 16px;" data-src="" data-src-retina="" alt="" class="">
+                    </div>
+                    </br>
+                    <h2  style="font-family: Fertigo ;" class="semi-bold text-white" style="margin-left: 37px;">
+                        YYYYY vous offre une meilleure gestion pour votre établissement scolaire</h2>
+                </div>
+                <!-- END Background Caption-->
+            </div>
+            <!-- END Login Background Pic Wrapper-->
+            <!-- START Login Right Container-->
+            <div class="login-container bg-white">
+                <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+                    <img src="{{asset('assetsE/img/loggi.png')}}" alt="logo" data-src="" data-src-retina="" width="350" height="109">
+                    <h2 class="p-t-35" ><b>Confirmation du Compte</b> </h2>
+                    </br>
+                    <h4>
+                        Confirmation faite avec Succes , Maintenant vous pouvez accéder 
+                        à votre compte, ansi d'utiliser les profils associés.
+                        </br>
+                        Bon Reception.
+                    </h4>
+
+                    <br/>
+
+                    <a href="{{ path("fos_user_security_login") }}">Se Connecter a votre Compte </a><br>
+                </div>
+            </div>
+
+
+
+            <!-- END Login Right Container-->
+        </div>
+
+    {% endblock fos_user_content %}
+{% endblock body %}
+
