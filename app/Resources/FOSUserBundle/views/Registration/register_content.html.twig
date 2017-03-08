@@ -1,0 +1,180 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;<b>Gestion Utilisateurs</b> > <u>Nouveau Utilisateur</u></h2>
+                <ul class="nav navbar-right panel_toolbox">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+
+                <!-- Smart Wizard -->
+                <div id="wizard" class="form_wizard wizard_horizontal">
+                    <ul class="wizard_steps">
+                        <li>
+                            <a href="#step-1">
+                                <span class="step_no">1</span>
+                                <span class="step_descr">
+                                    Etape 1<br />
+                                    <small>Informations Personnels</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-2">
+                                <span class="step_no">2</span>
+                                <span class="step_descr">
+                                    Etape 2<br />
+                                    <small>Informations de Connection</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-3">
+                                <span class="step_no">3</span>
+                                <span class="step_descr">
+                                    Etape 3<br />
+                                    <small>Affectation des Droits</small>
+                                </span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-horizontal form-label-left input_mask fos_user_registration_register' , 'id': 'form_Registration_User'}}) }}        
+
+                    <div id="step-1" class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-xs-offset-1 col-sm-offset-1">
+
+                        </br></br>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.prenom)}}</span></label>#}
+                            {{ form_widget(form.prenom , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User' }  }) }}
+                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.nom)}}</span></label>#}
+                            {{ form_widget(form.nom , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.email)}}</span></label>#}
+                            {{ form_widget(form.email , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.telephone)}}</span></label>#}
+                            {{ form_widget(form.telephone , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.fonction)}}</span></label>#}
+                            {{ form_widget(form.fonction , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-graduation-cap form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.adresse)}}</span></label>#}
+                            {{ form_widget(form.adresse , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-institution form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.dateEmbauche)}}</span></label>#}
+                            {{ form_widget(form.dateEmbauche , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'single_cal1'}  }) }}
+                            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
+
+                     
+
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.commentaire)}}</span></label>#}
+                            {{ form_widget(form.commentaire , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-comment form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
+
+
+                    </div>
+
+                    <div id="step-2" class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-xs-offset-1 col-sm-offset-1">
+
+                        </br></br>
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.username)}}</span></label>#}
+                            {{ form_widget(form.username , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.plainPassword.first )}}</span></label>#}
+                            {{ form_widget(form.plainPassword.first  , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-unlock-alt form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                            {# <label><span style="color: #f68484!important">{{form_errors(form.plainPassword.second)}}</span></label>#}
+                            {{ form_widget(form.plainPassword.second , { 'attr': {'class': 'form-control has-feedback-left' , 'id': 'form_Registration_User'}  }) }}
+                            <span class="fa fa-unlock-alt form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+
+
+
+                    </div>
+
+                    <div id="step-3">
+                        <h2 class="StepTitle">Step 3 Content</h2>
+                        <p>
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+
+                    <div class="col-md-3 pull-right">
+                        <label>  </label>
+                        <button type="submit" class=" form-control btn btn-primary">Ajouter</button>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+                <!-- End SmartWizard Content -->
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

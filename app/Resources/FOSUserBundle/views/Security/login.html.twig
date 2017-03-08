@@ -1,0 +1,90 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block stylesheets %}
+
+    <style>
+        body{
+            background-image: url("{{ asset("assets/img/boxed-bg2.png") }}")!important;
+        }
+
+    </style>
+{% endblock stylesheets %}
+
+{% block body %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    {% block fos_user_content %}
+        <div class="login-wrapper ">
+            <!-- START Login Background Pic Wrapper-->
+            <div class="bg-pic">
+                <!-- START Background Pic-->
+                <img src="{{asset('assetsE/img/demo/school.jpg')}}" data-src="{{asset('assetsE/img/demo/school.jpg')}}" data-src-retina="{{asset('assets/img/demo/school.jpg')}}" alt="" class="lazy">
+                <!-- END Background Pic-->
+                <!-- START Background Caption-->
+                <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+                    <div class="col-lg-2">
+                        <img src="{{asset('assetsE/img/demo/logohhCarre.png')}}" style="height: 200px; width: 200px;margin-left: 16px;" data-src="{{asset('assetsE/img/demo/logjjoCarre.png')}}" data-src-retina="{{asset('assetsE/img/demo/logoCarjjre.png')}}" alt="" class="">
+                    </div>
+                    </br>
+                    <h2  style="font-family: Fertigo ;" class="semi-bold text-white" style="margin-left: 37px;">
+                        YYYYY vous offre une meilleure gestion pour votre établissement scolaire</h2>
+                </div>
+                <!-- END Background Caption-->
+            </div>
+            <!-- END Login Background Pic Wrapper-->
+            <!-- START Login Right Container-->
+            <div class="login-container bg-white">
+                <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+                    <img src="{{asset('assetsE/img/loggi.png')}}" alt="logo" data-src="" data-src-retina="" width="350" height="109">
+                    <p class="p-t-35">Se connecter à Votre application</p>
+
+
+                    {% if error %}
+                        <div style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+
+                    <form id="form-login" class="p-t-15" role="form" action="{{ path("fos_user_security_check") }}" method="post">
+
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
+
+                        <!-- START Form Control-->
+                        <div class="form-group form-group-default input-group">
+                            <label for="username">Nom Utilisateur</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Email" required="required" />
+                            <span  class="input-group-addon"><i class="fa fa-user"></i></span>
+                        </div>
+                        <!-- END Form Control-->
+                        <!-- START Form Control-->
+                        <div class="form-group form-group-default input-group">
+                            <label for="password">Mot de passe </label>
+                            <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="mot de passe" />
+                            <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+                        </div>
+                        <!-- END Form Control-->
+
+                        <div class="row">
+                            <div class="col-md-6 no-padding">
+                                <div class="checkbox check-warning">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                    <label for="remember_me">Se Souvenir de moi </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit"  id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-info btn-cons m-t-10 btn-animated from-left fa fa-unlock" >
+                            <span class="bold">Se Connecter</span>
+                        </button>
+
+                    </form>
+                    <br/>
+                    
+                    <a href="{{ path("fos_user_resetting_request") }}">Mot de passe oublié</a><br>
+
+                </div>
+            </div>
+            <!-- END Login Right Container-->
+        </div>
+
+    {% endblock fos_user_content %}
+{% endblock body %}

@@ -1,0 +1,110 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+
+    <div>
+        <br/>
+    </div>
+
+
+    <!-- le navbar de parametrage -->
+    <div>
+        <br/>
+    </div>
+    <nav class=" col-md-10 col-md-offset-1 navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a style="font-family: 'Times New Roman' ; font-size: 25px ; font-weight: bold;" class="navbar-brand " href="#">Profil</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li ><a href="{{ path('fos_user_profile_edit') }}">Modifier </a></li>
+                <li class="active"><a href="{{ path('fos_user_profile_show') }}">Consulter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div class="row">
+        <div  class="row col-md-10 col-md-offset-1">
+
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-family: 'Times New Roman' ; font-size: 15px ;">
+                    <span>Vos informations sont modifier avec <b>Succes</b></span>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="col-md-4">
+                        <fieldset>
+                            <legend>Photo </legend>
+                            <div id="myImage" class="image">
+                                <img  src="{{ asset(user.getWebPath()) }}" class=" img-responsive" alt="User Image">
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row"> 
+                            <div class="col-md-5 form-group">
+                                <label>Prenom </label>
+                                <label class="form-control" > {{ user.prenom  }} </label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <label>Nom </label>
+                                <label class="form-control"> {{ user.prenom  }} </label>
+                            </div>
+
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-5 form-group">
+                                <label>Telephone </label>
+                                <label class="form-control" > {{ user.telephone  }} </label>
+                            </div>
+                            <div class="col-md-7 form-group">
+                                <label>Email </label>
+                                <label class="form-control" > {{ user.email  }} </label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Adresse </label>
+                            <label class="form-control" >{{ user.adresse  }}</label>
+                        </div>
+
+                    </div>
+                </div><!-- /.pannel-->
+            </div><!-- /.col-->
+        </div><!-- /.col-->
+    </div><!-- /.col-->
+
+
+
+
+
+
+
+
+    {#  <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+              <div class="panel panel-default">
+  
+                  <div class="panel-heading" style="font-family: 'Times New Roman' ; font-size: 15px ;">Vos informations sont modifier avec <b>Succes</b> </div>
+                  <div class="panel-body ">
+                      <h3>PRENOM :</h3> <h4> {{ user.prenom }}</h4>
+                      NOM : <p> {{ user.nom }}</p>
+                      TELEPHONE :<p> {{ user.telephone }}</p>
+                      EMAIL :   <p>{{ user.email }}</p>
+                      ADRESSE : <p> {{ user.adresse }}</p>
+                      NOM UTILSATION ( LOGIN ):  <p>{{ user.username }}</p>
+                      
+                  </div>
+              </div><!-- /.pannel-->
+          </div><!-- /.col-->
+  
+      </div><!-- /.row -->
+  #}
+</div>
+
