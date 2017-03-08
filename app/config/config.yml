@@ -82,8 +82,8 @@ fos_user:
         confirmation:
             enabled: true
             from_email:
-                address:        fssmisilims@gmail.com
-                sender_name:    LIMS FSSM ISI THEAM
+                address:        lidrissihamid@gmail.com
+                sender_name:    Lidrissi Hamid
                 
                 
                 
