@@ -7,8 +7,10 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * User
+ *
  * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="UserBundle\UserBundle\Repository\UserRepository")
  */
 class User extends BaseUser {
 
@@ -31,14 +33,14 @@ class User extends BaseUser {
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255 , nullable=true )
+     * @ORM\Column(name="nom", type="string", length=255 )
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255 , nullable=true)
+     * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
 
@@ -59,14 +61,14 @@ class User extends BaseUser {
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255 , nullable=true)
+     * @ORM\Column(name="adresse", type="string", length=255)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="string", length=255 , nullable=true)
+     * @ORM\Column(name="telephone", type="string", length=255)
      */
     private $telephone;
 
@@ -83,6 +85,43 @@ class User extends BaseUser {
      * @ORM\Column(name="fonction", type="string" , nullable= true)
      */
     private $fonction;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $pictureName;
+
+    /**
+     * @Assert\File(maxSize="500k")
+     */
+    public $file;
+
+    public function getWebPath() {
+        return null === $this->pictureName ? null : $this->getUploadDir() . '/' . $this->pictureName;
+    }
+
+    protected function getUploadRootDir() {
+        // le chemin absolu du répertoire dans lequel sauvegarder les photos de profil
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir() {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/pictures';
+    }
+
+    public function uploadProfilePicture() {
+        // Nous utilisons le nom de fichier original, donc il est dans la pratique 
+        // nécessaire de le nettoyer pour éviter les problèmes de sécurité
+        // move copie le fichier présent chez le client dans le répertoire indiqué.
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // On sauvegarde le nom de fichier
+        $this->pictureName = $this->file->getClientOriginalName();
+
+        // La propriété file ne servira plus
+        $this->file = null;
+    }
 
     /**
      * Get id
@@ -294,6 +333,28 @@ class User extends BaseUser {
      */
     public function getFonction() {
         return $this->fonction;
+    }
+
+    /**
+     * Set pictureName
+     *
+     * @param string $pictureName
+     *
+     * @return Utilisateur
+     */
+    public function setPictureName($pictureName) {
+        $this->pictureName = $pictureName;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureName
+     *
+     * @return string
+     */
+    public function getPictureName() {
+        return $this->pictureName;
     }
 
 }

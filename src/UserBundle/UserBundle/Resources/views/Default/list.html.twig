@@ -1,7 +1,152 @@
 {% extends '::base.html.twig' %}
 
 
+{% block  stylesheetsContent %}
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <style type="text/css">
+
+        .form-control {
+            border: 1px solid #eee;
+            box-shadow: none;
+            border-radius: 7px ; 
+            font-family : inherit;
+            font-size   : 100%;
+            padding: 10px;
+
+            box-shadow: inset 1px 1px 1px 0 #707070;
+            transition: box-shadow 0.3s;
+
+        }
+
+        .form-control:focus {
+            border: 1px solid #30a5ff;
+            outline: 0;
+            box-shadow: inset 0px 0px 0px 1px #30a5ff;
+            font-family : inherit;
+            font-size   : 100%;
+        }
+
+        #myImage{
+            margin-left: 15px;
+            margin-top: 0px;
+            width: 200px ; 
+            height: 200px ;
+            background-color: #ebebeb; 
+        }
+        .main-footer {
+
+            padding: 0px; 
+
+        }
+
+        body{
+            background:#eee;    
+        }
+        .main-box.no-header {
+            padding-top: 20px;
+        }
+        .main-box {
+            background: #FFFFFF;
+            -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
+            -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
+            -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
+            -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
+            box-shadow: 1px 1px 2px 0 #CCCCCC;
+            margin-bottom: 16px;
+            -webikt-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+        .table a.table-link.danger {
+            color: #e74c3c;
+        }
+        .label {
+            border-radius: 3px;
+            font-size: 0.875em;
+            font-weight: 600;
+        }
+        .user-list tbody td .user-subhead {
+            font-size: 0.875em;
+            font-style: italic;
+        }
+        .user-list tbody td .user-link {
+            display: block;
+            font-size: 1.25em;
+            padding-top: 3px;
+            margin-left: 60px;
+        }
+        a {
+            color: #3498db;
+            outline: none!important;
+        }
+        .user-list tbody td>img {
+            position: relative;
+            max-width: 50px;
+            float: left;
+            margin-right: 15px;
+        }
+
+        .table thead tr th {
+            text-transform: uppercase;
+            font-size: 0.875em;
+        }
+        .table thead tr th {
+            border-bottom: 2px solid #e7ebee;
+        }
+        .table tbody tr td:first-child {
+            font-size: 1.125em;
+            font-weight: 300;
+        }
+        .table tbody tr td {
+            font-size: 0.875em;
+            vertical-align: middle;
+            border-top: 1px solid #e7ebee;
+            padding: 12px 8px;
+        }
+
+    </style>
+{% endblock %}
+
 {%block content %}
+
+
+
+    <!-- Modal -->
+
+    {% for user in users %}
+        <div class="modal fade"  tabindex="-1" id="{{ user.id }}" role="dialog" data-toggle="modal" 
+             aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2a3f54;">
+                        <button style="color : white " type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" style="color: white"><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;&nbsp;Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="details">Vous Voulez Vraiment Supprimer cet Utilisateur  </h4>
+                    </div>
+
+                    <div class="modal-footer">
+
+
+                        <a class="btn btn-primary btn-cons btn-animated from-left" href="#">Supprimer</a></button>
+                        <button class="btn btn-default pull-right btn-cons btn-animated from-left"
+                                data-dismiss="modal">
+                            <span class="bold">Fermer</span></button>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+
+
+
+
+
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -28,173 +173,141 @@
                 </div>
                 <div class="x_content">
 
-                    <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
+
+                    <table class="table user-list table-bordered table-hover table-striped jambo_table bulk_action">
                         <thead>
-                          <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
-                            <th class="column-title">Invoice </th>
-                            <th class="column-title">Invoice Date </th>
-                            <th class="column-title">Order </th>
-                            <th class="column-title">Bill to Name </th>
-                            <th class="column-title">Status </th>
-                            <th class="column-title">Amount </th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                          </tr>
+                            <tr class="headings">
+                                <th class="column-title"><span>Utilisateur</span> </th>
+                                <th class="column-title">Etat  </th>
+                                <th class="column-title">Telephone </th>
+                                <th class="column-title">Email </th>
+                                <th class="column-title no-link last"><span class="nobr">Action</span>
+                                </th>
+                            </tr>
                         </thead>
-
                         <tbody>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 24, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$432.26</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 24, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$333.21</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 24, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 26, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 26, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$432.26</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 26, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$333.21</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
+                            {% for user in users %}
+                                <tr>
+                                    <td>
+                                        {% if user.getWebPath() != NULL %}
+                                            <img  src="{{ asset(user.getWebPath()) }}" class=" img-responsive " alt="User Image">
+                                        {% elseif user.getWebPath() ==  NULL %}
+                                            <img  src="{{ asset('images/myUser.png') }}" class=" img-responsive " alt="User Image">
+                                        {% endif %}
 
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 27, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 28, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
+                                        <a href="#" class="user-link">{{ user.nom }} {{ user.prenom }} </a>
+                                        <span class="user-subhead">{{ user.fonction }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        {% if( user.enabled == 1 ) %}
+                                            <span class="label label-success">Activé</span>
+                                        {% elseif (user.enabled == 0)  %}
+                                            <span class="label label-danger">Desactivé</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="#">{{ user.telephone }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="#">{{ user.email }}</a>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <a href="#" class="table-link">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i id="{{ user.id }}" class="fa fa-search-plus fa-stack-1x fa-inverse detailBtn"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="table-link">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+
+                                        <a  onclick="load({{ user.id }})" href="#{{user.id}}"  class="table-link danger deleteIcon" data-toggle="modal" >
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i  class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                        {% if(user.enabled == false) %}
+                                            <button  class="btn-large btn-animated btn-success  btn-xs">
+                                                <a  href="#" class="">
+                                                    <span>
+                                                        <b> Activer</b>
+                                                    </span>
+                                                </a>
+                                            </button>
+                                            <a  href="#"  class="table-link  "  >
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i  class="fa fa-unlock fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </a>
+                                        {% elseif(user.enabled == true) %}
+                                            <a  href="#"  class="table-link  "  >
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i  class="fa fa-unlock-alt fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
                         </tbody>
-                      </table>
-                    </div>
-							
+                    </table>
+
+
+
+
 
                 </div>
+
+
             </div>
         </div>
     </div>
 
+
+
+
 {% endblock content %}
+
+
+
+{% block javascriptsContent  %} 
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            //fonction javascript pour zommer  sur l'image
+            $('.img-responsive').click(function () {
+
+                var src = $(this).attr('src');
+                console.log(src);
+
+                
+
+                $.dialog({
+                    title: false,
+                    content: '<div style="width: 300px ; height = 350px; ">' +
+                            '<img src="' + src + '"/>' +
+                            '</div>',
+                });
+            });
+
+
+
+        });
+
+    </script>
+{% endblock %}
+
 
 
 
